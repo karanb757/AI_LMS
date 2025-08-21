@@ -1,0 +1,325 @@
+
+import {
+    GoogleGenerativeAI,
+    HarmCategory,
+    HarmBlockThreshold,
+  } from '@google/generative-ai';
+  
+  const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+  const genAI = new GoogleGenerativeAI(apiKey);
+  
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+  });
+  
+  const generationConfig = {
+    temperature: 1,
+    topP: 0.95,
+    topK: 40,
+    maxOutputTokens: 8192,
+    responseMimeType: 'application/json',
+  };
+  
+  export const courseOutlineAIModel = model.startChat({
+    generationConfig,
+    history: [
+      {
+        role: 'user',
+        parts: [
+          {
+            text: `Generate a study material for Python for Exam and level of difficult will be EASY with summary of course, List of chapters along with summary of each chapter and Emoji icon for Each chapter, Topic list in each chapter. All result in JSON format.in the json data you give . can you please remove chapter_number ,replace title with chapter_title.`,
+          },
+        ],
+      },
+      {
+        role: 'model',
+        parts: [
+          {
+            text: `**Analyzing Python Exam Needs**
+  
+  I'm currently focused on defining the scope of study material for a beginner-level Python exam. My goal is to outline a comprehensive course summary, broken down into manageable chapters. Each chapter will include a brief summary, a corresponding emoji, and a list of key topics. This structure aims to provide a clear and engaging roadmap for learning.
+  
+  **Outlining Exam Structure**
+  
+  I've shifted from the general scope to the specific structure. I'm building a JSON-formatted course outline for a beginner-level Python exam. The focus is now on ensuring the JSON includes a course summary, chapters with titles, summaries, emojis, and topics. My strategy is to first draft the overarching summary, then populate each chapter with its necessary components, keeping the difficulty level appropriate for beginners.
+          `,
+          },
+          {
+            text: `\`\`\`json
+  {
+    "course_title": "Python Basics: Your First Steps into Programming",
+    "course_summary": "This easy-level Python course is designed for absolute beginners with no prior programming experience. It covers the fundamental concepts of Python programming, including data types, variables, control flow, functions, and basic data structures. By the end of this course, you'll be able to write simple Python scripts and understand the core principles of programming.",
+    "chapters": [
+      {
+        "chapter_title": "Introduction to Python",
+        "chapter_summary": "This chapter introduces what Python is, why it's popular, and how to set up your development environment. You'll learn the very basics of running your first Python code.",
+        "emoji_icon": "🐍",
+        "topics": [
+          "What is Python?",
+          "Why learn Python?",
+          "Installing Python (overview)",
+          "Running your first Python program (Hello World)",
+          "Comments in Python"
+        ]
+      },
+      {
+        "chapter_title": "Variables and Data Types",
+        "chapter_summary": "Explore how Python handles different types of information. This chapter covers numbers, text (strings), and true/false values (booleans), and how to store them in variables.",
+        "emoji_icon": "🔢",
+        "topics": [
+          "What are variables?",
+          "Naming conventions for variables",
+          "Common data types: Integers, Floats, Strings, Booleans",
+          "Type conversion (e.g., int() , str() )"
+        ]
+      },
+      {
+        "chapter_title": "Basic Operations and Input/Output",
+        "chapter_summary": "Learn to perform mathematical operations, manipulate strings, and interact with the user by taking input and displaying output.",
+        "emoji_icon": "➕",
+        "topics": [
+          "Arithmetic operators (+, -, *, /, %, //, **)",
+          "String concatenation and f-strings",
+          "The print() function",
+          "The input() function"
+        ]
+      },
+      {
+        "chapter_title": "Control Flow: Conditionals",
+        "chapter_summary": "Understand how to make your programs make decisions using 'if', 'elif', and 'else' statements, allowing different code blocks to run based on conditions.",
+        "emoji_icon": "🚦",
+        "topics": [
+          "Comparison operators (==, !=, <, >, <=, >=)",
+          "Logical operators (and, or, not)",
+          "if statement",
+          "elif statement",
+          "else statement",
+          "Nested if statements (basic)"
+        ]
+      },
+      {
+        "chapter_title": "Control Flow: Loops",
+        "chapter_summary": "Discover how to repeat actions in your programs using 'for' and 'while' loops, essential for automating repetitive tasks.",
+        "emoji_icon": "🔄",
+        "topics": [
+          "What are loops?",
+          "for loop (iterating over sequences)",
+          "while loop (conditional repetition)",
+          "break statement",
+          "continue statement"
+        ]
+      },
+      {
+        "chapter_title": "Functions",
+        "chapter_summary": "Learn to organize your code into reusable blocks called functions. This chapter covers defining your own functions, passing arguments, and returning values.",
+        "emoji_icon": "⚙️",
+        "topics": [
+          "Why use functions?",
+          "Defining a function (def keyword)",
+          "Calling a function",
+          "Parameters and Arguments",
+          "Return values",
+          "Docstrings for functions"
+        ]
+      },
+      {
+        "chapter_title": "Basic Data Structures: Lists and Tuples",
+        "chapter_summary": "Get acquainted with two fundamental ways to store collections of items: lists (mutable) and tuples (immutable). You'll learn how to create, access, and modify them.",
+        "emoji_icon": "📋",
+        "topics": [
+          "Introduction to data structures",
+          "Lists: Creation, Accessing elements, Modifying elements, List methods (append, remove, len, etc.)",
+          "Tuples: Creation, Accessing elements, Why use tuples (immutability)"
+        ]
+      },
+      {
+        "chapter_title": "Basic Data Structures: Dictionaries",
+        "chapter_summary": "Explore dictionaries, which allow you to store data as key-value pairs, providing a flexible way to organize and retrieve information.",
+        "emoji_icon": "📚",
+        "topics": [
+          "What are dictionaries?",
+          "Creating dictionaries",
+          "Accessing values by key",
+          "Adding and modifying key-value pairs",
+          "Dictionary methods (keys, values, items, get)"
+        ]
+      },
+      {
+        "chapter_title": "Error Handling (Basic Try-Except)",
+        "chapter_summary": "Understand how to gracefully handle common errors that might occur during program execution using basic try-except blocks, making your code more robust.",
+        "emoji_icon": "⚠️",
+        "topics": [
+          "Introduction to errors and exceptions",
+          "The try-except block",
+          "Common error types (e.g., ValueError, TypeError, ZeroDivisionError)",
+          "Handling specific exceptions"
+        ]
+      }
+    ]
+  }
+  \`\`\``,
+          },
+        ],
+      },
+    ],
+  });
+  
+
+//GENERATE NOTES -> 
+export const generateNotesAiModel = model.startChat({
+    generationConfig,
+    history: [
+      {
+        role: "user",
+        parts: [
+          {
+            text: `Generate exam material detail content for each chapter. 
+  Make sure to include all topic points in the content. 
+  Make sure to give all content in HTML format 
+  (Do not add HTML, Head, Body, or Title tags). 
+  The chapters: {
+    "chapter_title": "Control Flow: Conditionals",
+    "chapter_summary": "Understand how to make your programs make decisions using 'if', 'elif', and 'else' statements, allowing different code blocks to run based on conditions.",
+    "emoji_icon": "🚦",
+    "topics": [
+      "Comparison operators (==, !=, <, >, <=, >=)",
+      "Logical operators (and, or, not)",
+      "if statement",
+      "elif statement",
+      "else statement",
+      "Nested if statements (basic)"
+    ]
+  }`
+          }
+        ]
+      },
+      {
+        role: "model",
+        parts: [
+          {
+            text: `**Analyzing Exam Content Needs**
+  
+  I'm focusing on the user's need for "Control Flow: Conditionals" exam material. My goal is to craft comprehensive HTML content for each topic within this chapter. Currently, I'm identifying the specific topic points to cover. My next step will be generating detailed content for each of them.
+  
+  
+  **Defining HTML Structure Now**
+  
+  I'm now zeroing in on the HTML structure for the "Control Flow: Conditionals" material. I've broken down the steps into iterating through topics, crafting explanations, and then formatting those as HTML. The key is to use appropriate tags like <h2>, <h3>, <p>, and lists while adhering to the user's specific HTML requirements. I'm prioritizing clarity and exam-readiness in the explanations.`
+          },
+          {
+            text: `\`\`\`html
+  <h2>🚦 Control Flow: Conditionals</h2>
+  <p>Understand how to make your programs make decisions using 'if', 'elif', and 'else' statements, allowing different code blocks to run based on conditions.</p>
+  
+  <h3>Comparison operators (==, !=, <, >, <=, >=)</h3>
+  <p>Comparison operators are used to compare two values and return a Boolean result (True or False). These are fundamental for creating conditions in control flow statements.</p>
+  <ul>
+      <li><code>==</code> (Equal to): Checks if two values are equal.</li>
+      <li><code>!=</code> (Not equal to): Checks if two values are not equal.</li>
+      <li><code>&lt;</code> (Less than): Checks if the left operand is less than the right operand.</li>
+      <li><code>&gt;</code> (Greater than): Checks if the left operand is greater than the right operand.</li>
+      <li><code>&lt;=</code> (Less than or equal to): Checks if the left operand is less than or equal to the right operand.</li>
+      <li><code>&gt;=</code> (Greater than or equal to): Checks if the left operand is greater than or equal to the right operand.</li>
+  </ul>
+  <p><strong>Example:</strong><br>
+  <code>x = 10</code><br>
+  <code>y = 5</code><br>
+  <code>print(x == y)  # Output: False</code><br>
+  <code>print(x > y)   # Output: True</code></p>
+  
+  <h3>Logical operators (and, or, not)</h3>
+  <p>Logical operators combine conditional statements. They are crucial for building complex conditions by joining multiple simple conditions.</p>
+  <ul>
+      <li><code>and</code>: Returns <code>True</code> if both conditions are true.</li>
+      <li><code>or</code>: Returns <code>True</code> if at least one of the conditions is true.</li>
+      <li><code>not</code>: Reverses the logical state of its operand. If a condition is true, <code>not</code> makes it false, and vice versa.</li>
+  </ul>
+  <p><strong>Example:</strong><br>
+  <code>age = 25</code><br>
+  <code>is_student = True</code><br>
+  <code>print(age > 18 and is_student)  # Output: True (both conditions are true)</code><br>
+  <code>print(age < 20 or is_student)   # Output: True (is_student is true)</code><br>
+  <code>print(not is_student)          # Output: False</code></p>
+  
+  <h3>if statement</h3>
+  <p>The <code>if</code> statement is the most basic control flow statement. It executes a block of code only if a specified condition is true.</p>
+  <p><strong>Syntax:</strong></p>
+  <pre><code>if condition:
+      # code to execute if condition is True
+  </code></pre>
+  <p><strong>Example:</strong><br>
+  <code>score = 85</code><br>
+  <code>if score >= 60:</code><br>
+  <code>    print("You passed the exam!")</code></p>
+  
+  <h3>elif statement</h3>
+  <p>The <code>elif</code> (else if) statement allows you to check multiple conditions sequentially. If the preceding <code>if</code> or <code>elif</code> conditions are false, the <code>elif</code> condition is evaluated.</p>
+  <p><strong>Syntax:</strong></p>
+  <pre><code>if condition1:
+      # code for condition1
+  elif condition2:
+      # code for condition2
+  elif condition3:
+      # code for condition3
+  </code></pre>
+  <p><strong>Example:</strong><br>
+  <code>temperature = 28</code><br>
+  <code>if temperature < 0:</code><br>
+  <code>    print("Freezing cold!")</code><br>
+  <code>elif temperature < 15:</code><br>
+  <code>    print("A bit chilly.")</code><br>
+  <code>elif temperature < 25:</code><br>
+  <code>    print("Pleasant weather.")</code><br>
+  <code>else:</code><br>
+  <code>    print("Hot day!")</code></p>
+  
+  <h3>else statement</h3>
+  <p>The <code>else</code> statement provides a default block of code to execute if none of the preceding <code>if</code> or <code>elif</code> conditions are true. It is optional and can only be used once after an <code>if</code> or <code>elif</code> chain.</p>
+  <p><strong>Syntax:</strong></p>
+  <pre><code>if condition:
+      # code if condition is True
+  else:
+      # code if condition is False
+  </code></pre>
+  <p><strong>Example:</strong><br>
+  <code>age = 16</code><br>
+  <code>if age >= 18:</code><br>
+  <code>    print("You are an adult.")</code><br>
+  <code>else:</code><br>
+  <code>    print("You are a minor.")</code></p>
+  
+  <h3>Nested if statements (basic)</h3>
+  <p>Nested <code>if</code> statements involve placing one or more <code>if</code> (or <code>elif</code>/<code>else</code>) statements inside another <code>if</code> (or <code>elif</code>/<code>else</code>) block. This allows for more granular decision-making based on multiple levels of conditions.</p>
+  <p><strong>Syntax:</strong></p>
+  <pre><code>if outer_condition:
+      # Code for outer_condition
+      if inner_condition:
+          # Code for inner_condition (executed only if outer_condition AND inner_condition are True)
+      else:
+          # Code if outer_condition is True but inner_condition is False
+  </code></pre>
+  <p><strong>Example:</strong><br>
+  <code>is_logged_in = True</code><br>
+  <code>has_admin_rights = False</code><br>
+  <code>if is_logged_in:</code><br>
+  <code>    print("Welcome, user!")</code><br>
+  <code>    if has_admin_rights:</code><br>
+  <code>        print("Accessing admin panel.")</code><br>
+  <code>    else:</code><br>
+  <code>        print("Accessing standard user dashboard.")</code><br>
+  <code>else:</code><br>
+  <code>    print("Please log in.")</code></p>
+  \`\`\``
+          }
+        ]
+      },
+      {
+        role: "user",
+        parts: [
+          {
+            text: `INSERT_INPUT_HERE`
+          }
+        ]
+      }
+    ]
+  });  
