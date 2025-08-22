@@ -1,6 +1,6 @@
 import { serve } from "inngest/next";
 import { inngest } from "../../../inngest/client";
-import {CreateNewUser, GenerateNotes, helloWorld} from '../../../inngest/function.js'
+import {CreateNewUser, GenerateNotes, helloWorld,GenerateStudyTypeContent} from '../../../inngest/function.js'
 
 // Create an API that serves zero functions
 export const { GET, POST, PUT } = serve({
@@ -8,6 +8,7 @@ export const { GET, POST, PUT } = serve({
   functions: [
     helloWorld,
     CreateNewUser,
-    GenerateNotes
+    GenerateNotes,
+    GenerateStudyTypeContent
   ],
 });
