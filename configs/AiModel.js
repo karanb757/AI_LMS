@@ -327,3 +327,103 @@ export const GenerateStudyTypeContentAiModel = model.startChat({
     }
   ]
 });
+
+export const GenerateQuizAiModel = model.startChat({
+  generationConfig,
+  history: [
+    {
+      role: "user",
+      parts: [
+        {
+          text: "Generate Quiz on topic: Javascript chapters with quizTitle, Questions, and Options along with correct answer in JSON format (Max 10)"
+        }
+      ]
+    },
+    {
+      role: "model",
+      parts: [
+        {
+          text: `**Developing the JSON Structure**
+
+I'm currently working on crafting the JSON structure for the quiz. I'm focusing on ensuring each quiz item includes the essential elements: \`quizTitle\`, \`question\`, an array of \`options\`, and the \`correctAnswer\`. I'm aiming for a concise and easily parseable format. My goal is a maximum of 10 items, representing different JavaScript concepts.
+
+**Defining Quiz Content**
+
+I've shifted gears to flesh out the content. My immediate task is to identify and select ten distinct JavaScript topics. After that, I'll formulate a relevant \`quizTitle\`, \`question\`, a set of \`options\`, and the \`correctAnswer\` for each topic. I'm focusing on creating accurate and clear questions. I'm leveraging my extensive JavaScript knowledge to generate this quiz content, rather than resorting to external searches.
+`
+        },
+        {
+          text: `\`\`\`json
+[
+  {
+    "quizTitle": "JavaScript Basics",
+    "question": "Which keyword is used to declare a variable in JavaScript?",
+    "options": ["var", "let", "const", "All of the above"],
+    "correctAnswer": "All of the above"
+  },
+  {
+    "quizTitle": "Data Types",
+    "question": "Which of the following is NOT a primitive data type in JavaScript?",
+    "options": ["Number", "String", "Boolean", "Object"],
+    "correctAnswer": "Object"
+  },
+  {
+    "quizTitle": "Operators",
+    "question": "What is the result of '5' + 3 in JavaScript?",
+    "options": ["8", "53", "Error", "NaN"],
+    "correctAnswer": "53"
+  },
+  {
+    "quizTitle": "Control Flow",
+    "question": "Which statement is used to execute a block of code if a specified condition is true?",
+    "options": ["for", "while", "if", "switch"],
+    "correctAnswer": "if"
+  },
+  {
+    "quizTitle": "Functions",
+    "question": "How do you call a function named 'myFunction'?",
+    "options": ["call myFunction()", "myFunction[]", "myFunction()", "run myFunction()"],
+    "correctAnswer": "myFunction()"
+  },
+  {
+    "quizTitle": "Arrays",
+    "question": "Which method is used to add an element to the end of an array?",
+    "options": ["unshift()", "push()", "pop()", "shift()"],
+    "correctAnswer": "push()"
+  },
+  {
+    "quizTitle": "Objects",
+    "question": "How do you access the property 'name' of an object named 'person'?",
+    "options": ["person.name", "person['name']", "person->name", "Both A and B"],
+    "correctAnswer": "Both A and B"
+  },
+  {
+    "quizTitle": "Loops",
+    "question": "Which type of loop executes a block of code at least once, and then repeats the loop as long as a condition is true?",
+    "options": ["for loop", "while loop", "do...while loop", "for...in loop"],
+    "correctAnswer": "do...while loop"
+  },
+  {
+    "quizTitle": "ES6 Features",
+    "question": "Which of the following is an ES6 feature for declaring block-scoped variables?",
+    "options": ["var", "function", "let", "global"],
+    "correctAnswer": "let"
+  },
+  {
+    "quizTitle": "DOM Manipulation",
+    "question": "Which method is used to select an HTML element by its ID?",
+    "options": [
+      "document.getElementsByClassName()",
+      "document.querySelector()",
+      "document.getElementById()",
+      "document.getElementsByTagName()"
+    ],
+    "correctAnswer": "document.getElementById()"
+  }
+]
+\`\`\``
+        }
+      ]
+    }
+  ]
+});

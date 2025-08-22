@@ -6,8 +6,9 @@ import { inngest } from "../../../inngest/client";
 export async function POST(req){
     const {chapters,courseId,type}=await req.json();
 
-    const PROMPT = 'Generate the flashcard on topic : '+chapters+' in JSON Format with front back content, Maximum 15'
-    // : 'Generate Quiz on topic : '+chapters+'with Question and Options along with correct answer in JSON format (Max 10)'
+    const PROMPT=type ='Flashcard' ? 
+    'Generate the flashcard on topic : '+chapters+' in JSON Format with front back content, Maximum 15'
+    : 'Generate Quiz on topic : '+chapters+'with quizTitle Questions and Options along with correct answer in JSON format (Max 10)'
 
 
     //Insert Record To DB,updata tehe status to Generating ....
