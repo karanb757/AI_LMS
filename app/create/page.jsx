@@ -8,7 +8,7 @@ import axios from "axios";
 import { useUser } from "@clerk/nextjs";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 
 const Create = () => {
   const [step, setStep] = useState(0);
@@ -44,7 +44,7 @@ const Create = () => {
     router.replace('/dashboard');
     console.log('formData After sending: :',result.data.result.resp);
 
-    // //TOAST Notification 
+    // TOAST Notification 
     // toast('Your course content is generating, Click on Refresh Button!');
     // console.log(result.data.result.resp);
     

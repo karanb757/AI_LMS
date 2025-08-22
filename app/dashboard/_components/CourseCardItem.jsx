@@ -1,4 +1,5 @@
-import { Link, RefreshCw } from 'lucide-react'
+import { RefreshCw } from 'lucide-react'
+import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
 import { Progress } from '../../../components/ui/progress'
@@ -24,7 +25,7 @@ const CourseCardItem = ({course}) => {
             <Progress value={0} />
         </div>
 
-        <div className='mt-3 flex justify-end'>
+        <div className='flex justify-end mt-3'>
            {course?.status=='Generating'?
            <h2 className='text-xs p-1 px-2 flex gap-2 items-center rounded-full bg-gray-400 text-white'>
             <RefreshCw className='h-4 w-4'/>
