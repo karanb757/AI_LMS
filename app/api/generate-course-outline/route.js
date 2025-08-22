@@ -78,7 +78,7 @@ export async function POST(req) {
       return new Response("Missing required fields", { status: 400 });
     }
 
-    const PROMPT = `Generate a study material for ${topic} for ${courseType}, difficulty: ${difficultyLevel}. Include chapter summaries, emoji icons per chapter, and a topic list per chapter. Respond in JSON format.`;
+    const PROMPT = `Generate a study material for ${topic} for ${courseType}, difficulty: ${difficultyLevel} with summary of course ,List of chapters (Max 3) along with summary and emoji icon for each chapter,Topic list per chapter. Respond in JSON format.`;
     
     // ✅ Generate course layout using AI 
     const aiResp = await courseOutlineAIModel.sendMessage(PROMPT);
