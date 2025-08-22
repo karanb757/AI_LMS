@@ -30,7 +30,6 @@ function SideBar() {
   ]
 
   const {totalCourse,setTotalCourse}=useContext(CourseCountContext);
-
   const path = usePathname();
 
   return (

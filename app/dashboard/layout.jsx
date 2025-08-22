@@ -19,7 +19,6 @@ function DashboardLayout({children}) {
             <div className='p-10'>
                 {children}
             </div>
-            {/* {children} */}
         </div>
     </div>
     </CourseCountContext.Provider>

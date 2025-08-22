@@ -195,17 +195,23 @@ export const GenerateStudyTypeContent = inngest.createFunction(
   async ({ event, step }) => {
     const { studyType, prompt, courseId,recordId } = event.data;
 
-    const AiResult = await step.run(
-      "Generating Flashcard using AI",
-      async () => {
-        const result = 
-        studyType=='Flashcard'?
-        await GenerateStudyTypeContentAiModel.sendMessage(prompt):
-        await GenerateQuizAiModel.sendMessage(prompt)
-        
-        const AIResult = JSON.parse(result.response.text());
-        return AIResult;
-      })
+      const AiResult = await step.run(
+        "Generating Flashcard using AI",
+        async () => {
+
+          const result = 
+          studyType=='Flashcard'?
+          await GenerateStudyTypeContentAiModel.sendMessage(prompt):
+          await GenerateQuizAiModel.sendMessage(prompt);
+          
+          try {
+            const AIResult = JSON.parse(result.response.text());
+            return AIResult;
+          } catch (error) {
+            throw error;
+          }
+        }
+      )
   
     // Save the result
     const dbResult = await step.run("Save Result to database", async () => {
