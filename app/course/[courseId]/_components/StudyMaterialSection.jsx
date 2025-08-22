@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MaterialCardItem from './MaterialCardItem'
 import axios from 'axios'
-import Link from 'next/link';
 
 const StudyMaterialSection = ({courseId,course}) => {
 
@@ -20,7 +19,7 @@ const StudyMaterialSection = ({courseId,course}) => {
             desc:'Flash card help to remember the concepts',
             icon:'/flashcard.png',
             path:'/flashcards',
-            type:'flashcard'
+            type:'Flashcard'
         },
         {
             name:'Quiz',
@@ -40,15 +39,19 @@ const StudyMaterialSection = ({courseId,course}) => {
 
     useEffect(()=>{
         GetStudyMaterial();
-    },[])
+    },[courseId])
 
-    const GetStudyMaterial=async ()=>{
-        const result = await axios.post('/api/study-type',{
-            courseId:courseId,
-            studyType:'ALL'    
-        })
-        console.log(result?.data);
-        setstudyTypeContent(result.data);
+    const GetStudyMaterial = async () => {
+        try {
+            const result = await axios.post('/api/study-type', {
+                courseId: courseId,
+                studyType: 'ALL'    
+            });
+            console.log('Study material result:', result?.data);
+            setstudyTypeContent(result.data);
+        } catch (error) {
+            console.error('Error fetching study material:', error);
+        }
     }
 
   return (

@@ -30,7 +30,7 @@ const MaterialCardItem = ({item,studyTypeContent,course,refreshData}) => {
 
     setLoading(false);
     console.log(result);
- 
+    refreshData(); // Call refreshData to update the UI
     // // toast('Your content is ready to view');
     
   }
@@ -38,14 +38,12 @@ const MaterialCardItem = ({item,studyTypeContent,course,refreshData}) => {
   const isContentReady = studyTypeContent?.[item.type]?.length != null;
 
   return (
-    <Link href={'/course/'+course?.courseId+item.path}>
     <div className={`border shadow-md rounded-lg p-5 flex flex-col items-center transition-all duration-300
-        ${!isContentReady ? 'grayscale hover:grayscale-0 hover:scale-105' : ''}
-        hover:shadow-lg cursor-pointer
+        hover:shadow-lg hover:scale-105 cursor-pointer
     `}>
         {
         !isContentReady ?
-          <h2 className='p-1 px-2 bg-gray-500 text-white rounded-full text-[10px] mb-2' onClick={()=>GenerateContent()}>Generate</h2>
+          <h2 className='p-1 px-2 bg-gray-500 text-white rounded-full text-[10px] mb-2'>Generate</h2>
         : <h2 className='p-1 px-2 bg-green-500 text-white rounded-full text-[10px] mb-2'>Ready</h2>
         }
 
@@ -60,10 +58,12 @@ const MaterialCardItem = ({item,studyTypeContent,course,refreshData}) => {
            }}>
             {loading&&<RefreshCcw className='animate-spin'/>}
             Generate</Button>
-           : <Button className='mt-3 w-full' variant='outline'>View</Button>
+           : 
+           <Link href={'/course/'+course?.courseId+item.path}>
+              <Button className='mt-3 w-full' variant='outline'>View</Button>
+           </Link>
         }
     </div>
-    </Link>
   )
 }
 

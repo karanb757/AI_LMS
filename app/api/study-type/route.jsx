@@ -24,7 +24,7 @@ export async function POST(req){
 
             const result = {
                 notes: notes,
-                flashCard: contentList?.filter(item => item.type === 'Flashcard'),
+                Flashcard: contentList?.filter(item => item.type === 'Flashcard'),
                 quiz: contentList?.filter(item => item.type === 'Quiz'),
                 qa: contentList?.filter(item => item.type === 'QA'),
             };
@@ -46,10 +46,9 @@ export async function POST(req){
                 ));
 
             return NextResponse.json(result[0] ?? []);
+            // return NextResponse.json(result);
         }
-    } 
-    
-    catch (error) {
+    } catch (error) {
         console.error("Error in /api/study-type:", error);
         return NextResponse.json(
             { error: "Internal server error", details: error.message },
