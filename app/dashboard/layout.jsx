@@ -10,13 +10,13 @@ function DashboardLayout({children}) {
 
   return (
     <CourseCountContext.Provider value={{totalCourse,setTotalCourse}}>
-    <div>
-        <div className='md:w-60 hidden md:block fixed'>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+        <div className='md:w-60 hidden md:block fixed h-screen z-10'>
             <SideBar/>
         </div>
-        <div className='md:ml-60'>
+        <div className='md:ml-60 min-h-screen'>
             <DashboardHeader/>
-            <div className='p-10'>
+            <div className='p-6 md:p-10'>
                 {children}
             </div>
         </div>
@@ -26,3 +26,4 @@ function DashboardLayout({children}) {
 }
 
 export default DashboardLayout
+

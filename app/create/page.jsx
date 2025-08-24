@@ -56,8 +56,7 @@ const Create = () => {
         Start Building Your Personal Study Material{" "}
       </h2>
       <p className="text-gray-500 text-lg">
-        Fill All details in order to generate study material for your next
-        project
+        Select an option to build your preferred course
       </p>
 
       <div className="mt-10">

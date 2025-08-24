@@ -1,21 +1,37 @@
 "use client"
 import { useUser } from '@clerk/nextjs'
-import Image from 'next/image'
+import { Sparkles, TrendingUp, Target } from 'lucide-react'
 import React from 'react'
 
-const WelcomeBanner = () => {
-
+export default function WelcomeBanner() {
     const {user} = useUser();
 
-  return (
-    <div className='p-5 bg-blue-500 w-full text-white rounded-lg flex items-center gap-6'>
-        <Image src={'/laptop.png'} alt='laptop' width={100} height={100}/>
-        <div>
-            <h1 className='font-extrabold text-4xl'>Hello {user?.fullName}</h1>
-            <p className=''>Welcome Back, Its time to get back and start learning New course</p>
+    return (
+        <div className='mb-8 '>
+            {/* Greeting Badge */}
+            <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-slate-200 mb-4 shadow-sm">
+                <Sparkles className="w-4 h-4 text-yellow-500 mr-2 animate-pulse" />
+                <span className="text-slate-700 text-sm font-medium">Welcome back!</span>
+            </div>
+            
+            <h1 className='font-bold text-3xl md:text-4xl lg:text-5xl text-slate-800 mb-3'>
+                Hello, {user?.firstName || user?.fullName || 'there'}! 👋
+            </h1>
+            <p className='text-slate-600 text-lg md:text-xl leading-relaxed mb-6'>
+                Ready to continue your learning journey? Let's create something amazing today.
+            </p>
+            
+            {/* Quick Stats */}
+            <div className="flex flex-wrap gap-4">
+                <div className="flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm">
+                    <TrendingUp className="w-5 h-5 text-green-500 mr-2" />
+                    <span className="text-slate-700 text-sm font-medium">Learning Streak</span>
+                </div>
+                <div className="flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border border-slate-200 shadow-sm">
+                    <Target className="w-5 h-5 text-yellow-500 mr-2" />
+                    <span className="text-slate-700 text-sm font-medium">Goal Focused</span>
+                </div>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
-
-export default WelcomeBanner
