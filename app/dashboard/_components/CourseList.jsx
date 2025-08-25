@@ -86,8 +86,9 @@ export default function CourseList() {
 
     return (
         <div className='mt-12'>
+
             {/* Section Header */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
                 <div>
                     <h2 className='font-bold text-3xl text-slate-800 mb-2'>
                         Your Study Materials

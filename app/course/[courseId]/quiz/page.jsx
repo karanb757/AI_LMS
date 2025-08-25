@@ -178,7 +178,7 @@ const Quiz = () => {
 
     return (
         <div>
-            <h2 className="font-bold text-2xl text-center mb-4">Quiz</h2>
+            <h2 className="font-bold text-2xl text-center mb-4 mt-36">Quiz</h2>
 
             {/* Check if quiz has data and current question exists */}
             {quiz && quiz.length > 0 && quiz[stepCount] ? (
@@ -193,7 +193,7 @@ const Quiz = () => {
                         }}
                     />
 
-                    <div>
+                    <div >
                         <QuizCardItem
                             quiz={quiz[stepCount]}
                             userSelectedOption={(v) => checkAnswer(v, quiz[stepCount])}
@@ -250,3 +250,4 @@ const Quiz = () => {
 };
 
 export default Quiz;
+

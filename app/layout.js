@@ -2,9 +2,7 @@ import {Outfit} from 'next/font/google';
 import "./globals.css";
 import { ClerkProvider } from '@clerk/nextjs';
 import Provider from './Provider.js'
-// import { Toaster } from '../@/components/ui/sonner';
-
-
+import { ThemeProvider } from './_context/ThemeContext';
 
 const outfit = Outfit({
   subsets:['latin'],
@@ -25,11 +23,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={outfit.className}>
         <Provider>
-          {children}
+          <ThemeProvider>
+                {children}
+          </ThemeProvider>
         </Provider>
-        {/* <Toaster/> */}
       </body>
     </html>
     </ClerkProvider>
   );
 }
+
+

@@ -1,5 +1,4 @@
 "use client"
-import DashboardHeader from '../../../app/dashboard/_components/DashboardHeader.jsx';
 import axios from 'axios';
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -105,7 +104,7 @@ const Course = () => {
 
     return (
         <div>
-            <div>
+            <div className='pt-20'>
                 <CourseIntroCard course={course} />
                 <StudyMaterialSection courseId={courseId} course={course}/>
                 <ChapterList course={course}/>
@@ -115,3 +114,4 @@ const Course = () => {
 }
 
 export default Course;
+

@@ -1,13 +1,12 @@
 "use client"
 import React, { useContext } from 'react'
-import logo from '../../../public/logo.svg'
-import Image from 'next/image'
 import { Button } from '../../../components/ui/button.jsx'
 import { HomeIcon, LayoutDashboard, Shield, UserCircle } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { Progress } from '../../../components/ui/progress'
 import Link from 'next/link'
 import { CourseCountContext } from '../../_context/CourseCountContext.jsx'
+import { useRouter } from 'next/navigation';
 
 function SideBar() {
 
@@ -37,21 +36,14 @@ function SideBar() {
   const {totalCourse,setTotalCourse}=useContext(CourseCountContext);
   const path = usePathname();
 
+  const router = useRouter();
+
   return (
     <div className='h-full w-60 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 shadow-xl border-r border-slate-100 p-4 flex flex-col overflow-y-auto'>
         {/* Logo Section */}
         <div className='flex gap-2 items-center justify-center mt-6 mb-8'>
-            <h2 className='font-extrabold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>AI-LMS</h2>
+            <h2 onClick={() => router.push('/')} className='font-extrabold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent cursor-pointer'>AI-LMS</h2>
         </div>
-
-        {/* Create New Button */}
-        {/* <div className='mb-6'>
-          <Link href={'/create'} className='w-full'>
-            <Button className='w-full h-11 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300'>
-              + Create New
-            </Button>
-          </Link>
-        </div> */}
 
         {/* Navigation Menu */}
         <div className='flex-1 space-y-3'>
@@ -72,7 +64,7 @@ function SideBar() {
                     ? 'text-white' 
                     : 'text-slate-700'
                 }`}>
-                  {menu.name}
+                     {menu.name}
                 </h2>
               </div>
             </Link>
@@ -95,4 +87,4 @@ function SideBar() {
   )
 }
 
-export default SideBar
+export default SideBar 

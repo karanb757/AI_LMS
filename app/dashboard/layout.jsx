@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from 'react'
 import SideBar from './_components/SideBar'
-import DashboardHeader from './_components/DashboardHeader'
 import { CourseCountContext } from '../_context/CourseCountContext'
 
 function DashboardLayout({children}) {
@@ -15,7 +14,6 @@ function DashboardLayout({children}) {
             <SideBar/>
         </div>
         <div className='md:ml-60 min-h-screen'>
-            <DashboardHeader/>
             <div className='p-6 md:p-10'>
                 {children}
             </div>

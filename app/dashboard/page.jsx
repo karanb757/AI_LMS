@@ -1,11 +1,10 @@
-import WelcomeBanner from './_components/WelcomeBanner'
+import Navbar from '../components/Navbar'
 import CourseList from './_components/CourseList'
 import React from 'react'
 
 const Dashboard = () => {
     return (
         <div className="min-h-screen">
-            <WelcomeBanner />
             <CourseList/>
         </div>
     )

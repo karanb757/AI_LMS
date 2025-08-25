@@ -38,15 +38,6 @@ export default function CourseCardItem({course}) {
                     {course?.courseLayout?.course_summary || course?.courseLayout?.summary}
                 </p>
         
-                {/* Progress Section */}
-                <div className='mb-4'>
-                    <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-medium text-slate-500">Progress</span>
-                        <span className="text-xs font-semibold text-blue-600">0%</span>
-                    </div>
-                    <Progress value={0} className="h-2 bg-slate-100" />
-                </div>
-
                 {/* Action Button */}
                 <div className='flex justify-end mt-auto'>
                     {course?.status=='Generating' ? (
@@ -56,7 +47,7 @@ export default function CourseCardItem({course}) {
                         </div>
                     ) : (
                         <Link href={'/course/'+course?.courseId} className="w-full">
-                            <Button className="w-full bg-blue-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group">
+                            <Button className="mt-3 w-full bg-blue-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group">
                                 <Play className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                                 Continue Learning
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

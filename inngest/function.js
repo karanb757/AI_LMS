@@ -41,10 +41,6 @@ export const CreateNewUser = inngest.createFunction(
 
     return 'Success';
   }
-
-  //step is to send welcome email notification 
-
-  //step to send email notification after 3 days of user login
 );
 
 //USED TO GENERATE NOTES 
@@ -55,13 +51,6 @@ export const GenerateNotes = inngest.createFunction(
     console.log("=== STARTING NOTES GENERATION ===");
     
     const { course } = event.data;
-    
-    // Enhanced debugging
-    console.log("Full event data:", JSON.stringify(event.data, null, 2));
-    console.log("Course object:", JSON.stringify(course, null, 2));
-    console.log("Course ID:", course?.courseId);
-    console.log("Course layout:", course?.courseLayout);
-    console.log("Chapters array:", course?.courseLayout?.chapters);
     
     // Validate course data
     if (!course) {
