@@ -41,4 +41,3 @@ import {
     type:varchar().notNull(),
     status: varchar().default('Generating'),
   })
-
